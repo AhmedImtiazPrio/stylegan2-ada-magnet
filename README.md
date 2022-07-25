@@ -23,23 +23,23 @@ numpy
 
 ## Usage
 1. Download network weight .pkl file from [here](https://nvlabs-fi-cdn.nvidia.com/stylegan2-ada/pretrained/). For example, for cifar10:
-```
+```console
 wget https://nvlabs-fi-cdn.nvidia.com/stylegan2-ada/pretrained/cifar10.pkl
 ```
 
 2. Calculate singular values for random latents
 
-```
+```console
 python get_svds.py --network=cifar10.pkl --N=200000 --label_size=10 --proj_dim=128 --save_path=./svds/
 ```
 
 3. Compile calculated svds. Specify `save_path`, `conditional_flag` and list .npz files to compile 
-```
+```console
 python compile_svds.py cifar10_singulars.npz 1 ./svds/*.npz
 ```
 
 4. Sample latents
-```
+```python
 from polarity_utils import polSampler
 
 sampler = polSampler('cifar10_singulars.npz',rho=1,top_k=15,is_conditional=True)
@@ -50,7 +50,7 @@ latents, labels = sampler.sample(n=100)
 ```
 
 5. Generate images using latents
-```
+```python
 from dnnlib import tflib
 import tensorflow as tf
 
