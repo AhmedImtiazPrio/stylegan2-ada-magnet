@@ -23,18 +23,18 @@ numpy
 
 ## Usage
 1. Download network weight .pkl file from [here](https://nvlabs-fi-cdn.nvidia.com/stylegan2-ada/pretrained/). For example, for cifar10:
-```console
+```shell
 wget https://nvlabs-fi-cdn.nvidia.com/stylegan2-ada/pretrained/cifar10.pkl
 ```
 
 2. Calculate singular values for random latents
 
-```console
+```shell
 python get_svds.py --network=cifar10.pkl --N=200000 --label_size=10 --proj_dim=128 --save_path=./svds/
 ```
 
 3. Compile calculated svds. Specify `save_path`, `conditional_flag` and list .npz files to compile 
-```console
+```shell
 python compile_svds.py cifar10_singulars.npz 1 ./svds/*.npz
 ```
 
@@ -75,4 +75,17 @@ with tf.Graph().as_default(), tflib.create_session().as_default():
         
 plt.figure()
 plt.imshow(imgrid(np.vstack(imgs),cols=10))
+```
+
+
+### Citation
+```
+@InProceedings{Humayun_2022_polarity,
+    author    = {Humayun, Ahmed Imtiaz and Balestriero, Randall and Baraniuk, Richard},
+    title     = {Polarity Sampling: Quality and Diversity Control of Pre-Trained Generative Networks via Singular Values},
+    booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+    month     = {June},
+    year      = {2022},
+    pages     = {10641-10650}
+}
 ```
