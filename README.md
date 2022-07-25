@@ -48,3 +48,31 @@ latents, labels = sampler.sample(n=100)
 sampler.update_rho(-.3)
 latents, labels = sampler.sample(n=100)
 ```
+
+5. Generate images using latents
+```
+from dnnlib import tflib
+import tensorflow as tf
+
+import matplotlib.pyplot as plt
+from polarity_utils import imgrid, to_uint8
+
+with tf.Graph().as_default(), tflib.create_session().as_default():
+    
+    with dnnlib.util.open_url('cifar10.pkl') as f:
+        _G, _D, Gs = pickle.load(f)
+    
+    imgs = []
+    for i in range(latents.shape[0]):
+        
+        latents_in = tf.convert_to_tensor(latents[i][None,...])
+        labels_in = tf.convert_to_tensor(labels[i][None,...])
+
+        images = Gs.get_output_for(latents_in, labels_in,
+                                truncation_psi=1, is_validation=True)
+
+        imgs.append(to_uint8(dnnlib.tflib.run(images).transpose(0,2,3,1)))
+        
+plt.figure()
+plt.imshow(imgrid(imgs,cols=10))
+```
