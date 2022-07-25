@@ -26,6 +26,6 @@ python compile_svds.py cifar10_singulars.npz 1 ./svds/*.npz`
 ```
 from polarity_utils import polSampler
 
-sampler = polSampler('cifar10_singulars.npz',rho=1,top_k=15)
+sampler = polSampler('cifar10_singulars.npz',rho=1,top_k=15,is_conditional=True)
 latents, labels = sampler.sample(n=100)
 ```
