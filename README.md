@@ -37,7 +37,7 @@ wget https://nvlabs-fi-cdn.nvidia.com/stylegan2-ada/pretrained/cifar10.pkl
 2. Calculate singular values for random latents
 
 ```shell
-python get_svds.py --network=cifar10.pkl --N=200000 --label_size=10 --proj_dim=128 --save_path=./svds/
+python get_svds.py --network=cifar10.pkl --N=200000 --label_size=10 --proj_dim=128 --save_path=./svds/ --num_gpus=1 --batch_size=8
 ```
 
 3. Compile calculated svds. Specify `save_path`, `conditional_flag` and list .npz files to compile 
