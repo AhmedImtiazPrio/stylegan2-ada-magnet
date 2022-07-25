@@ -1,6 +1,6 @@
 ## Plug-and-play codes for StyleGAN2-ada with Polarity Sampling
 ### Polarity Sampling: Quality and Diversity Control of Pre-Trained Generative Networks via Singular Values, CVPR 2022 (Oral)
-### [Paper Link](https://arxiv.org/abs/2203.01993) [Video Link](https://www.youtube.com/watch?v=zRKyx_dF89M)
+### [Paper Link](https://arxiv.org/abs/2203.01993) | [Video Link](https://www.youtube.com/watch?v=zRKyx_dF89M)
 
 *Authors:* Ahmed Imtiaz Humayun, Randall Balestriero, Richard Baraniuk
 
