@@ -10,12 +10,19 @@
 
 ## Setup
 
+The repository is based on the official Tensorflow StyleGAN2-ada repository. The additional plug-and-play elements in the repository are the following:
+1. `get_svds.py`: To calculate the singular values required to estimate volume scalars
+2. `compile_svds.py`: `get_svds.py` creates multiple numpy files with latent vectors and corresponding singular values. `compile_svds.py` compiles them together for downstream tasks.
+3. `polarity_utils.py`: Contains the `polSampler` class that uses precomputed singular values for polarity sampling.
+
+### To get started:
+
 ```
 git clone https://github.com/AhmedImtiazPrio/stylegan2-ada-magnet.git
 ```
 
 
-Requirements:
+### Requirements:
 ```
 tensorflow-gpu==1.15
 numpy
