@@ -5,13 +5,25 @@ class polSampler(object):
     svds (np.ndarray): singular values of the input-output transformation corresponding to latent vector locations
     labels (np.ndarray): one hot encoded labels for conditional generators
     """
-    def __init__(self,svds,latents,rho,top_k=30,labels=None):
+    def __init__(self,singulars_npz,rho,top_k=30,is_conditional=False):
         
-        self.svds = svds
-        self.latents = latents
+        with np.load(singulars_npz) as data:
+            
+            self.svds = data['svds']
+            self.latents = data['latents']
+            
+            if is_conditional: ## load saved condition vectors
+                self.labels = data['labels']
+            else:
+                self.labels = None
+        
+#         self.svds = svds
+#         self.latents = latents
+
+        self.is_conditional = is_conditional
         self.top_k = top_k
         self.rho = rho
-        self.labels = labels
+#         self.labels = labels
         
         # for conditional
         if labels is not None:
@@ -22,11 +34,11 @@ class polSampler(object):
             self.class_labels = np.argmax(labels,axis=-1)
             self.unique_classes = np.unique(self.class_labels)
             self.num_classes = labels.shape[1]
-            self.is_conditional = True
+#             self.is_conditional = True
             
         else:
             self.classes = None
-            self.is_conditional = False
+#             self.is_conditional = False
         
         ## get unnormalized probabilities
         sigma = np.exp(np.log(self.svds[:,:self.top_k].astype(np.float64)).sum(1))
