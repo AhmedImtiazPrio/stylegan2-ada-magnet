@@ -5,7 +5,11 @@ import sys
 if len(sys.argv)<3:
     raise AttributeError('''
     Usage:
-    python save_filename conditional_flag regexp_path_to_npz
+    `python save_filename conditional_flag regexp_path_to_npz`
+    
+    save_filename: filename to save compiled data to
+    conditional_flag: binary flag showing whether conditional data or not
+    regexp_path_to_npz: regular expression for npz files to compile together
     ''')
     
 save_file = sys.argv[1]
