@@ -9,8 +9,7 @@
 ### Repository with plug-and-play codes for different models at [magnet-polarity](https://github.com/AhmedImtiazPrio/magnet-polarity) 
 
 ## Usage
-1. Download network weight .pkl file from [here](https://nvlabs-fi-cdn.nvidia.com/stylegan2-ada/pretrained/)
-For example, for cifar10:
+1. Download network weight .pkl file from [here](https://nvlabs-fi-cdn.nvidia.com/stylegan2-ada/pretrained/). For example, for cifar10:
 ```
 wget https://nvlabs-fi-cdn.nvidia.com/stylegan2-ada/pretrained/cifar10.pkl
 ```
@@ -21,9 +20,9 @@ wget https://nvlabs-fi-cdn.nvidia.com/stylegan2-ada/pretrained/cifar10.pkl
 python get_svds.py --network=cifar10.pkl --N=200000 --label_size=10 --proj_dim=128 --save_path=./svds/
 ```
 
-3. Compile calculated svds
+3. Compile calculated svds. Specify `save_path`, `conditional_flag` and list .npz files to compile 
 ```
-python compile_svds.py cifar10_singulars.npz 1 ./svds/*.npz`
+python compile_svds.py cifar10_singulars.npz 1 ./svds/*.npz
 ```
 
 4. Sample latents
@@ -31,5 +30,8 @@ python compile_svds.py cifar10_singulars.npz 1 ./svds/*.npz`
 from polarity_utils import polSampler
 
 sampler = polSampler('cifar10_singulars.npz',rho=1,top_k=15,is_conditional=True)
+latents, labels = sampler.sample(n=100)
+
+sampler.update_rho(-.3)
 latents, labels = sampler.sample(n=100)
 ```
