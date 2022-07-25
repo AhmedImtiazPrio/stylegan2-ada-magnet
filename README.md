@@ -9,7 +9,11 @@
 ### Repository with plug-and-play codes for different models at [magnet-polarity](https://github.com/AhmedImtiazPrio/magnet-polarity) 
 
 ## Usage
-1. Download network weight .pkl file 
+1. Download network weight .pkl file from [here](https://nvlabs-fi-cdn.nvidia.com/stylegan2-ada/pretrained/)
+For example, for cifar10:
+```
+wget https://nvlabs-fi-cdn.nvidia.com/stylegan2-ada/pretrained/cifar10.pkl
+```
 
 2. Calculate singular values for random latents
 
