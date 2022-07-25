@@ -74,5 +74,5 @@ with tf.Graph().as_default(), tflib.create_session().as_default():
         imgs.append(to_uint8(dnnlib.tflib.run(images).transpose(0,2,3,1)))
         
 plt.figure()
-plt.imshow(imgrid(imgs,cols=10))
+plt.imshow(imgrid(np.vstack(imgs),cols=10))
 ```
