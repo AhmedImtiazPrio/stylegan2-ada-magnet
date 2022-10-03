@@ -24,9 +24,9 @@ parser = argparse.ArgumentParser(
 parser.add_argument('--batch_size', help='minibatch per gpu', type=int, default=16)
 parser.add_argument('--num_gpu', help='number of gpus', type=int, default=1)
 parser.add_argument('--truncation_psi', help='truncation for stylegan', type=float, default=1)
-parser.add_argument('--N', help='number of latents to sample', type=int)
-parser.add_argument('--network', help='path to pretrained network pkl', type=str)
-parser.add_argument('--save_path', help='path to save svds', type=str)
+parser.add_argument('--N', help='number of latents to sample', type=int, required=True)
+parser.add_argument('--network', help='path to pretrained network pkl', type=str, required=True)
+parser.add_argument('--save_path', help='path to save svds', type=str, required=True)
 parser.add_argument('--label_size', help='number of labels for conditional sampling', type=int, default=0)
 parser.add_argument('--proj_dim', help='projection dimensions', type=int, default=128)
 
